@@ -5,32 +5,32 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Main from './pages/Main';
 import User from './pages/User';
 
-const Routes = createAppContainer(
-    createBottomTabNavigator(
-        {
-            Main,
-            User,
+const MainStack = createBottomTabNavigator(
+    {
+        Main: {
+            screen: Main,
         },
-        {
-            tabBarOptions: {
-                activeTintColor: '#fff',
-                labelStyle: {
-                    fontSize: 12,
-                },
-                style: {
-                    backgroundColor: '#7159c1',
-                },
+        User: {
+            screen: User,
+        },
+    },
+    {
+        tabBarOptions: {
+            activeTintColor: '#fff',
+            labelStyle: {
+                fontSize: 12,
             },
-            // headerLayoutPreset: 'center',
-            // headerBackTitleVisible: false,
-            // defaultNavigationOptions: {
-            //     headerStyle: {
-            //         backgroundColor: '#7159c1',
-            //     },
-            //     headerTintColor: '#fff',
-            // },
-        }
-    )
+            style: {
+                backgroundColor: '#7159c1',
+            },
+        },
+    }
 );
 
-export default Routes;
+const App = createBottomTabNavigator({
+    Main: {
+        screen: MainStack,
+    },
+});
+
+export default createAppContainer(App);
